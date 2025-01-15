@@ -1,13 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path =   require('path');
+const serveStatic = require('serve-static');
 
 const app = express();
 
 // front end
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', "html");
+// app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', "ejs");
 app.set("views" , path.join(__dirname, "../frontend/views"));
+// static ejs
+// Use path.join or path.resolve to construct the path
+const staticPath = path.join(__dirname, '../frontend/static');
+app.use('/static', express.static(staticPath));
 
 // Middleware
 app.use(bodyParser.json())
