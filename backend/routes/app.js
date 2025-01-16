@@ -7,7 +7,10 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("login")
+  const {name, age, gender} = req.query;
+  res.render("login", {
+    user:["alvin", 22, "male"]
+  })
 })
 // router.get("/about", (req, res, next) => {
 //   res.render("about")
